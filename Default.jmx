@@ -47,6 +47,23 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Set Headers For application/json" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">X-Requested-With</stringProp>
+            <stringProp name="Header.value">XMLHttpRequest</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept</stringProp>
+            <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/x-www-form-urlencoded; charset=UTF-8</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
       <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
         <boolProp name="clearEachIteration">true</boolProp>
         <boolProp name="useExpires">false</boolProp>
@@ -162,7 +179,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="SetUp Thread Group" enabled="true">
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="SetUp Thread Group" enabled="false">
         <stringProp name="TestPlan.comments">Get Magento 2 API Token</stringProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -205,7 +222,7 @@
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/rest/V1/integration/admin/token</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -299,7 +316,7 @@
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">rest/all/V1/customers</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -336,7 +353,7 @@ f.close();
           </hashTree>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;Login-&gt;My Account-&gt;Logout" enabled="false">
+      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;Login-&gt;My Account-&gt;Logout" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
           <collectionProp name="1617926642">
             <stringProp name="49">1</stringProp>
@@ -379,23 +396,6 @@ f.close();
           <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Set Headers For application/json" enabled="true">
-          <collectionProp name="HeaderManager.headers">
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">X-Requested-With</stringProp>
-              <stringProp name="Header.value">XMLHttpRequest</stringProp>
-            </elementProp>
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">Accept</stringProp>
-              <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
-            </elementProp>
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">application/x-www-form-urlencoded; charset=UTF-8</stringProp>
-            </elementProp>
-          </collectionProp>
-        </HeaderManager>
-        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Home" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Main page" enabled="true">
@@ -404,7 +404,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -419,7 +419,16 @@ f.close();
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
-          <hashTree/>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings"/>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Login" enabled="true"/>
         <hashTree>
@@ -440,7 +449,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/customer/account/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -504,7 +513,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/customer/account/loginPost/</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -579,7 +588,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/sales/order/history/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -613,7 +622,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/wishlist/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -644,7 +653,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/customer/account/edit/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -675,7 +684,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/customer/address/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -706,7 +715,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/newsletter/manage/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -737,7 +746,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">customer/account/logout</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -755,7 +764,7 @@ f.close();
           <hashTree/>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;PLP-&gt;PDP" enabled="false">
+      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;PLP-&gt;PDP" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
           <collectionProp name="1617926642">
             <stringProp name="49">1</stringProp>
@@ -772,23 +781,6 @@ f.close();
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
       </kg.apc.jmeter.threads.UltimateThreadGroup>
       <hashTree>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Set Headers For application/json" enabled="true">
-          <collectionProp name="HeaderManager.headers">
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">X-Requested-With</stringProp>
-              <stringProp name="Header.value">XMLHttpRequest</stringProp>
-            </elementProp>
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">Accept</stringProp>
-              <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
-            </elementProp>
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">Content-Type</stringProp>
-              <stringProp name="Header.value">application/x-www-form-urlencoded; charset=UTF-8</stringProp>
-            </elementProp>
-          </collectionProp>
-        </HeaderManager>
-        <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Home" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Main page" enabled="true">
@@ -797,7 +789,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path"></stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -817,7 +809,7 @@ f.close();
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PLP" enabled="true"/>
         <hashTree>
           <com.blazemeter.jmeter.RandomCSVDataSetConfig guiclass="com.blazemeter.jmeter.RandomCSVDataSetConfigGui" testclass="com.blazemeter.jmeter.RandomCSVDataSetConfig" testname="Random PLP paths" enabled="true">
-            <stringProp name="filename">plp.csv</stringProp>
+            <stringProp name="filename">data/plp.csv</stringProp>
             <stringProp name="fileEncoding">UTF-8</stringProp>
             <stringProp name="delimiter">\n</stringProp>
             <stringProp name="variableNames">path</stringProp>
@@ -833,7 +825,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">${path}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -880,7 +872,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">${filter_option}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -908,7 +900,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">${filter_option}&amp;product_list_order=${sorting_option}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -979,7 +971,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">${productDetailPageUrl}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1004,7 +996,7 @@ f.close();
           </hashTree>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;Auto Complete Search-&gt;SRP-&gt;Filter SRP-&gt;PDP" enabled="false">
+      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;Auto Complete Search-&gt;SRP-&gt;Filter SRP-&gt;PDP" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
           <collectionProp name="1560278174">
             <stringProp name="49">1</stringProp>
@@ -1046,7 +1038,7 @@ f.close();
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path"></stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1158,7 +1150,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">catalogsearch/result/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1208,7 +1200,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/catalogsearch/result/index/?product_list_order=${sorting_option}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1279,7 +1271,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">${productDetailPageUrl}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1304,7 +1296,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
           </hashTree>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;PLP-&gt;PDP-&gt;Cart-&gt;Checkout-&gt;Place Order" enabled="false">
+      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: Home-&gt;PLP-&gt;PDP-&gt;Cart-&gt;Checkout-&gt;Place Order" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
           <collectionProp name="1617926642">
             <stringProp name="49">1</stringProp>
@@ -1372,7 +1364,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path"></stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1408,7 +1400,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">${path}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1455,7 +1447,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">${filter_option}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1483,7 +1475,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">${filter_option}&amp;product_list_order=${sorting_option}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1554,7 +1546,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">${productDetailPageUrl}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1586,7 +1578,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
               <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
             </HtmlExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Product Type (Simple || Configurable || Bundle || Grouped)" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Product Type (Simple || Configurable)" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">productType</stringProp>
               <stringProp name="RegexExtractor.regex">&quot;type&quot;:&quot;([s|c|b||g]{1}[\w]+?)&quot;</stringProp>
@@ -1679,7 +1671,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
               </elementProp>
               <stringProp name="HTTPSampler.domain"></stringProp>
               <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">checkout/cart/add/uenc/${uenc}/product/${product_id}/</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1689,7 +1681,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
               <boolProp name="HTTPSampler.image_parser">true</boolProp>
               <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re">^((?!typography|bazaarvoice|vimeo|scene|zdassets|www\.eileenfisher).)*$</stringProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">Java</stringProp>
               <stringProp name="HTTPSampler.connect_timeout"></stringProp>
               <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1761,7 +1753,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
               </elementProp>
               <stringProp name="HTTPSampler.domain"></stringProp>
               <stringProp name="HTTPSampler.port"></stringProp>
-              <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">checkout/cart/add/${uenc}/product/${product_id}/</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1771,7 +1763,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
               <boolProp name="HTTPSampler.image_parser">true</boolProp>
               <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re">^((?!typography|bazaarvoice|vimeo|scene|zdassets|www\.eileenfisher).)*$</stringProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">Java</stringProp>
               <stringProp name="HTTPSampler.connect_timeout"></stringProp>
               <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1796,7 +1788,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/checkout/cart/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1827,7 +1819,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port">${SSLPort}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/checkout</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1870,7 +1862,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">rest/default/V1/guest-carts/${cartId}/estimate-shipping-methods</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1878,6 +1870,8 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1922,7 +1916,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">rest/default/V1/guest-carts/${cartId}/shipping-information</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1930,6 +1924,8 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1974,7 +1970,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">rest/default/V1/guest-carts/${cartId}/set-payment-information</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1982,6 +1978,8 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -2026,7 +2024,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">rest/default/V1/guest-carts/${cartId}/payment-information</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -2034,6 +2032,8 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -2071,7 +2071,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">checkout/onepage/success/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2079,6 +2079,8 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">true</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -2118,7 +2120,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
           </hashTree>
         </hashTree>
       </hashTree>
-      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: CMS" enabled="false">
+      <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Thread Group: CMS" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
           <collectionProp name="1617926642">
             <stringProp name="49">1</stringProp>
@@ -2176,7 +2178,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2201,7 +2203,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/about-us</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2226,7 +2228,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/customer-service</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2251,7 +2253,7 @@ for (int i = 1; i &lt; sub_queries.length; i++) {
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
-            <stringProp name="HTTPSampler.protocol">${SSLProtocol}</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/privacy-policy-cookie-restriction-mode</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
